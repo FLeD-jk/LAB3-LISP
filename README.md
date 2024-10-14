@@ -70,7 +70,7 @@
 ### Тестові набори
 ```lisp
 (defun check-shell-sorting-imperative (name input expected)
-  "Execute spread-values on input, compare result with expected and print comparison status"
+  "Execute shell-sorting-imperative on input, compare result with expected and print comparison status"
   (let ((result (shell-sorting-imperative input))) 
     (format t "~:[~a failed! Expected: ~a Obtained: ~a~;~a passed! Expected: ~a Obtained: ~a~]~%"
             (equal result expected)
