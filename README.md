@@ -63,7 +63,7 @@
 (defun shell-sorting-imperative (lst)
   (let* ((my-copy-list (copy-list lst))
          (gaps (generate-gaps (length my-copy-list))))  
-    (dolist (k gaps my-copy-list)      
+    (dolist (k gaps)      
       (loop for i from k below (length my-copy-list) do
         (let ((tmp (nth i my-copy-list))  
               (j i))
