@@ -1,4 +1,26 @@
+(defun replace-at (lst idx new-elem)
+  (cond
+    ((null lst) nil)
+    ((= idx 0) (cons new-elem (rest lst)))
+    (t (cons (first lst) (replace-at (rest lst) (- idx 1) new-elem)))))
 
+(defun shell-sort-rec (lst n gap i)
+  (if (>= gap 1)
+      (if (< i n)
+          (let ((j i))
+            (if (and (>= j gap) (> (nth (- j gap) lst) (nth j lst)))
+                (shell-sort-rec (replace-at (replace-at lst j (nth (- j gap) lst)) 
+                                             (- j gap) (nth j lst)) 
+                                      n gap (- j gap))
+              (shell-sort-rec lst n gap (+ i 1))))
+        (shell-sort-rec lst n (floor (/ gap 2)) 0))  
+    lst))
+
+(defun shell-sorting-functional (lst)
+  (let ((n (length lst)))
+    (shell-sort-rec lst n (floor (/ n 2)) 0))
+
+  
 (defun generate-gaps (n)
   (if (< n 1)
       nil 
