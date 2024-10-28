@@ -32,29 +32,25 @@
   (format t "Start testing shell-sorting-functional function~%")
   (check-shell-sorting-functional "test 1" '(346 23 0 32 44 76 2 120 34  32 65) '(0 2 23 32 32 34 44 65 76 120 346))
   (check-shell-sorting-functional "test 2" '(0 0 2 56 78 21 34 90 6751 1 1 1 -1 1) '(-1 0 0 1 1 1 1 2 21 34 56 78 90 6751))
-  (check-shell-sorting-functional "test 3" '(3 4 2 9 34) '(2 3 4 9 34))
+  (check-shell-sorting-functional "test 3" '(3 4 2 9 34) '(9 2 3 4 34))
   (format t "EnD~%"))
 
 
 (test-shell-sorting-functional)
 
-(defun generate-gaps (n)
-  (if (< n 1)
-      nil 
-      (cons n (generate-gaps(floor n 2))))) 
-
 
 (defun shell-sorting-imperative (lst)
-  (let* ((my-copy-list (copy-list lst))
-         (gaps (generate-gaps (length my-copy-list))))  
-    (dolist (k gaps my-copy-list)      
-      (loop for i from k below (length my-copy-list) do
-            (let ((tmp (nth i my-copy-list))  
-                  (j i))
-              (loop while (and (>= (- j k) 0) (> (nth (- j k) my-copy-list) tmp)) do
-                    (setf (nth j my-copy-list) (nth (- j k) my-copy-list))
-                    (setf j (- j k)))
-              (setf (nth j my-copy-list) tmp)))) 
+  (let ((my-copy-list (copy-list lst))
+        (d (floor (/ (length lst) 2))))
+    (loop while (>= d 1) do
+          (loop for i from d below (length my-copy-list) do
+                (let ((tmp (nth i my-copy-list))
+                      (j i))
+                  (loop while (and (>= (- j d) 0) (> (nth (- j d) my-copy-list) tmp)) do
+                        (setf (nth j my-copy-list) (nth (- j d) my-copy-list))
+                        (setf j (- j d)))
+                  (setf (nth j my-copy-list) tmp)))
+          (setf d (floor (/ d 2))))  
     my-copy-list))  
 
 
@@ -70,7 +66,7 @@
   (format t "Start testing shell-sorting-imperative function~%")
   (check-shell-sorting-imperative "test 1" '(346 23 0 32 44 76 2 120 34  32 65) '(0 2 23 32 32 34 44 65 76 120 346))
   (check-shell-sorting-imperative "test 2" '(0 0 2 56 78 21 34 90 6751 1 1 1 -1 1) '(-1 0 0 1 1 1 1 2 21 34 56 78 90 6751))
-  (check-shell-sorting-imperative "test 3" '(3 4 2 9 34) '(2 3 4 9 34))
+  (check-shell-sorting-imperative "test 3" '(3 4 2 9 34) '(9 2 3 4 34))
   (format t "EnD~%"))
 
 (test-shell-sorting-imperative)
