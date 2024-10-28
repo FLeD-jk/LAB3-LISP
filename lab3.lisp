@@ -41,16 +41,16 @@
 
 (defun shell-sorting-imperative (lst)
   (let ((my-copy-list (copy-list lst))
-        (d (floor (/ (length lst) 2))))
-    (loop while (>= d 1) do
-          (loop for i from d below (length my-copy-list) do
+        (k (floor (/ (length lst) 2))))
+    (loop while (>= k 1) do
+          (loop for i from k below (length my-copy-list) do
                 (let ((tmp (nth i my-copy-list))
                       (j i))
-                  (loop while (and (>= (- j d) 0) (> (nth (- j d) my-copy-list) tmp)) do
-                        (setf (nth j my-copy-list) (nth (- j d) my-copy-list))
-                        (setf j (- j d)))
+                  (loop while (and (>= (- j k) 0) (> (nth (- j k) my-copy-list) tmp)) do
+                        (setf (nth j my-copy-list) (nth (- j k) my-copy-list))
+                        (setf j (- j k)))
                   (setf (nth j my-copy-list) tmp)))
-          (setf d (floor (/ d 2))))  
+          (setf k (floor (/ k 2))))  
     my-copy-list))  
 
 
