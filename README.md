@@ -77,7 +77,12 @@
 ```
 ### Тестування
 ```lisp
-<Виклик і результат виконання тестів>
+CL-USER> (test-shell-sorting-functional)
+Start testing shell-sorting-functional function
+test 1 passed! Expected: (0 2 23 32 32 34 44 65 76 120 346) Obtained: (0 2 23 32 32 34 44 65 76 120 346)
+test 2 passed! Expected: (-1 0 0 1 1 1 1 2 21 34 56 78 90 6751) Obtained: (-1 0 0 1 1 1 1 2 21 34 56 78 90 6751)
+test 3 passed! Expected: (2 3 4 9 34) Obtained: (2 3 4 9 34)
+EnD
 ```
 ## Лістинг функції з використанням деструктивного підходу
 ```lisp
@@ -120,6 +125,6 @@ CL-USER> (test-shell-sorting-imperative)
 Start testing shell-sorting-imperative function
 test 1 passed! Expected: (0 2 23 32 32 34 44 65 76 120 346) Obtained: (0 2 23 32 32 34 44 65 76 120 346)
 test 2 passed! Expected: (-1 0 0 1 1 1 1 2 21 34 56 78 90 6751) Obtained: (-1 0 0 1 1 1 1 2 21 34 56 78 90 6751)
-test 3 failed! Expected: (9 2 3 4 34) Obtained: (2 3 4 9 34)
+test 3 passed! Expected: (2 3 4 9 34) Obtained: (2 3 4 9 34)
 EnD
 ```
