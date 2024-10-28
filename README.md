@@ -45,7 +45,7 @@
       (if (< i n)
           (let ((j i))
             (if (and (>= j gap) (> (nth (- j gap) lst) (nth j lst)))
-                (shell-sorting (swap (replace-at lst j (nth (- j gap) lst)) 
+                (shell-sorting (swap (swap lst j (nth (- j gap) lst)) 
                                             (- j gap) (nth j lst)) 
                                 n gap (- j gap))
                 (shell-sorting lst n gap (+ i 1))))
